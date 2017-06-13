@@ -1,0 +1,161 @@
+\documentclass[12pt,a4paper, reqno]{amsart}
+\usepackage[slovene]{babel}
+\usepackage[utf8]{inputenc}
+%\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage[dvipsnames,usenames]{color}
+\usepackage{algorithmicx,algpseudocode}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{varwidth}
+
+\textwidth 15cm
+\textheight 24cm
+\oddsidemargin.5cm
+\evensidemargin.5cm
+\topmargin-5mm
+\addtolength{\footskip}{10pt}
+\pagestyle{plain}
+
+\overfullrule=15pt % oznaci predlogo vrstico
+
+
+\newtheorem{definicija}{Definicija}[section]
+\newtheorem{lema}[definicija]{Lema}
+\newtheorem{izrek}[definicija]{Izrek}
+\newtheorem{trditev}[definicija]{Trditev}
+\newtheorem{posledica}[definicija]{Posledica}
+
+\let\oldref\ref
+\renewcommand{\ref}[1]{(\oldref{#1})}
+
+\def\R{\mathbb R}
+\def\N{\mathbb N}
+\def\Z{\mathbb Z}
+\def\C{\mathbb C}
+\def\Q{\mathbb Q}
+
+\renewcommand{\algorithmicrequire}{{\bf Vhod:}}
+
+\begin{document}
+
+\thispagestyle{empty}
+\noindent{\large
+Univerza v Ljubljani \hfill Ljubljana, \today\\[1mm]
+Fakulteta za matematiko in fiziko  \\[5mm]
+%IŠRM -- 2.~stopnja 
+}
+\medskip
+%\vfill
+\begin{center}{\large
+Računalniško podprto geometrijsko oblikovanje\\[4mm]
+% Seminarska naloga\\[4mm]
+{\bf Iskanje presečišč B\`{e}zierjevih krivulj z metodo hibridnih izrezkov}\\[4mm]
+Domen Keglevič\\[6mm]
+}
+\end{center}
+\medskip
+% tu se zacne tekst seminarja
+\section{Uvod}
+V seminarski nalogi nas bo zanimalo kako najti presečišča dveh ravninskih B\`{e}zier\-jevih krivulj. Ta problem lahko opišemo na naslednji način. Naj bosta ${\bf f}:[\alpha,\beta]\rightarrow \R^2$ in ${\bf g}:[\xi,\eta]\rightarrow \R^2$ ravninski B\`{e}zierjevi krivulji. Želimo najti učinkovit algoritem, ki za poljuben $\epsilon >0$ vrne pare intervalov $[\alpha_i,\beta_i]$ in $[\xi_i,\eta_i]$, ki vsebujejo presečišča ${\bf f}(t_i) = {\bf g}(s_i)$, $t_i\in[\alpha_i,\beta_i]$, $s_i\in[\xi_i,\eta_i]$, tako da velja $|\alpha _i - \beta _i| < \epsilon$ in $|\xi _i - \eta _i| < \epsilon$.
+
+Ta problem se da rešiti na več načinov. Tu bomo predstavili metodo hibridnih izrezkov, ki je razširitev metode B\`{e}zierjevih izrezkov. 
+
+Metoda B\`{e}zierjevih izrezkov najprej aproksimira krivuljo ${\bf g}$ tako, da leži znotraj ozkega pasa $P$ v ravnini ({\em fat line}). Nato izračuna presek pasa $P$ in konveksne ovojnice kontrolnih točk krivulje ${\bf f}$, ter definicijsko območje krivulje ${\bf f}$ omeji na intervale, kjer je presek neprazen. Nato vlogi ${\bf f}$ in ${\bf g}$ zamenja in postopek ponavlja dokler ne pride do željene natančnosti.
+
+Ideja metode hibridnih izrezkov je podobna kot ideja metode B\`{e}zierjevih izrezkov, le da ne opazujemo presek pasa $P$ s konveksno ovojnico kontrolnih točk krivulje ${\bf f}$, ampak z aproksimacijo krivulje ${\bf f}$ ({\em fat curve}), ki jo dobimo s pomočjo nižanja stopnje.
+
+\section{Metoda hibridnih izrezkov}
+Naj bosta v nadaljevanju ${\bf f}$ in ${\bf g}$ ravninski B\`{e}zierjevi krivulji dani z 
+$${\bf f}(t) = \sum _{i=0}^{n} {\bf a}_i B_{i,[\alpha,\beta]}^n(t), \qquad t\in[\alpha,\beta]$$
+in
+$${\bf g}(s) = \sum _{j=0}^{m} {\bf b}_i B_{j,[\xi,\eta]}^m(s), \qquad s\in[\xi,\eta],$$
+kjer so ${\bf a}_i, {\bf b}_j \in \R ^2$ kontrolne točke od ${\bf f}$ in ${\bf g}$ ter 
+$$
+B_{i,[\alpha,\beta]}^n(t) = \binom{n}{i} \frac{(t-\alpha)^i(\beta - t)^j}{(\beta - \alpha)^n}
+$$
+$i$-ti Bernsteinov bazni polinom stopnje $n$ na intervalu $[\alpha,\beta]$. Splošne intervale $[\alpha,\beta]$ namesto fiksnega intervala $[0,1]$ opazujemo zato, ker bo algoritem generiral zaporedje vedno manjših intervalov.
+
+\subsection{{\em Fat line} in {\em fat curve}}
+
+Definiramo
+\begin{equation}\label{def_delta}
+\delta = \lVert {\bf f}(t) - {\bf p}(t) \rVert _{BB}
+\end{equation}
+
+%\begin{definicija}
+%Funkcija $f\colon [a,b]\to\R$ je {\em zvezna}, "ce...
+%\end{definicija}
+%%
+%\begin{izrek}
+%Zvezna funkcija na zaprtem intervalu je enakomerno zvezna.
+%\end{izrek}
+%%
+%\proof
+%Izberimo $\varepsilon>0$.
+%\endproof
+
+
+\subsection{Iskanje intervalov}
+
+\subsection{Psevdo koda}
+
+\begin{small}
+   \begin{algorithmic}[1]
+	\Require $({\bf f},{\bf g}, [\alpha,\beta], [\xi,\eta], k)$ : ravninski B\`{e}zierjevi krivulji, njuni domeni in stopnja aproksimacijske krivulje
+
+	\If{$|\alpha - \beta | < \epsilon$ in  $|\xi - \eta| < \epsilon$} \hfill ustavitveni pogoj
+		\State \Return $[\alpha,\beta],[\xi,\eta]$
+	\Else
+		\If{$|\alpha - \beta | < |\xi - \eta|$} \hfill želimo, da ima {\bf f} večjo domeno
+			\State $HybridClip( {\bf g}, {\bf f}, [\xi,\eta],[\alpha,\beta],k)$ 
+			\hfill zamenjamo vlogi ${\bf f}$ in ${\bf g}$
+		\Else
+			\State $L, C \gets $ {\em fat line}$({\bf g})$, {\em fat curve}$({\bf f})$ 
+			\hfill aproksimiraj ${\bf f}$ in ${\bf g}$
+			\State Najdi intervale $[\alpha _i,\beta _i]$, kjer je $L\cap C\neq \emptyset$
+			\If{$l > 0$ in $\max _{i=1,\ldots ,l}\, \{ |\alpha _i - \beta _i|\} \geq 
+				\frac{1}{2}|\alpha -\beta |$} \hfill  aproksimacija ni dobra
+				\State \Return \begin{varwidth}[t]{\linewidth}  
+					$HybridClip({\bf f},{\bf g},[\alpha,\frac{1}{2}(\alpha+\beta)],[\xi,\frac{1}{2}(\xi+\eta)],k)$\par $ 
+        \hskip\algorithmicindent
+					\cup \, HybridClip({\bf f},{\bf g},[\alpha,\frac{1}{2}(\alpha+\beta)],[\frac{1}{2}(\xi+\eta), \eta],k)$\par$
+        \hskip\algorithmicindent
+					\cup \, HybridClip({\bf f},{\bf g},[\frac{1}{2}(\alpha+\beta), \beta],[\frac{1}{2}(\xi+\eta), \eta],k)$\par$
+        \hskip\algorithmicindent
+					\cup \, HybridClip({\bf f},{\bf g},[\frac{1}{2}(\alpha+\beta), \beta],[\xi, \frac{1}{2}(\xi+\eta)],k)$
+					\end{varwidth}
+			\Else \hfill  aproksimacija je dobra
+				\State $S\gets \emptyset$
+				\For{$i=1,\ldots,l$} 
+					\State $S\gets S\cup HybridClip({\bf f},{\bf g},[\alpha _i,\beta _i], [\xi,\eta],k)$
+					\hfill rekurziven klic
+				\EndFor
+				\State \Return $S$ \hfill vrnemo rezultat
+			\EndIf
+		\EndIf
+	\EndIf
+   \end{algorithmic}
+\end{small}
+
+\input{red_konvergence}
+
+\section{Zaključki}
+grafi, komentarji
+% seznam uporabljene literature
+\begin{thebibliography}{99}
+
+\bibitem{bez_clip}
+ Sederberg T, Nishita T. Curve intersection using B\`{e}zier clipping. Comput
+Aided Des 1990;22(9):538--49.
+
+\bibitem{oznaka-enote-za-sklic}
+\textcolor{Red}{I.~Priimek, {\em Naslov "clanka}, okraj"sano ime revije {\bf letnik revije} (leto izida) strani od--do.}
+
+\bibitem{navodilaOMF}
+\textcolor{Red}{C.~Velkovrh, {\em Nekaj navodil avtorjem za pripravo rokopisa}, Obzornik mat.\ fiz.\ {\bf 21} (1974) 62--64.}
+
+\end{thebibliography}
+
+\end{document}
+
