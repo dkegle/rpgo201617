@@ -8,6 +8,9 @@
 \usepackage{graphicx}
 \usepackage{wrapfig}
 \usepackage{varwidth}
+\usepackage{caption}
+\captionsetup{justification   = centering,
+              singlelinecheck = false}
 
 \textwidth 15cm
 \textheight 24cm
@@ -18,7 +21,6 @@
 \pagestyle{plain}
 
 \overfullrule=15pt % oznaci predlogo vrstico
-
 
 \newtheorem{definicija}{Definicija}[section]
 \newtheorem{lema}[definicija]{Lema}
@@ -61,82 +63,59 @@ V seminarski nalogi nas bo zanimalo kako najti presečišča dveh ravninskih B\`
 
 Ta problem se da rešiti na več načinov. Tu bomo predstavili metodo hibridnih izrezkov, ki je razširitev metode B\`{e}zierjevih izrezkov. 
 
-Metoda B\`{e}zierjevih izrezkov najprej aproksimira krivuljo ${\bf g}$ tako, da leži znotraj ozkega pasa $P$ v ravnini ({\em fat line}). Nato izračuna presek pasa $P$ in konveksne ovojnice kontrolnih točk krivulje ${\bf f}$, ter definicijsko območje krivulje ${\bf f}$ omeji na intervale, kjer je presek neprazen. Nato vlogi ${\bf f}$ in ${\bf g}$ zamenja in postopek ponavlja dokler ne pride do željene natančnosti.
+Metoda B\`{e}zierjevih izrezkov najprej aproksimira krivuljo ${\bf g}$ z ozkim pasom $\mathcal{L}$ v ravnini ({\em fat line}), tako da ${\bf g}$ leži znotraj $\mathcal{L}$. Nato izračuna presek pasa $\mathcal{L}$ in konveksne ovojnice kontrolnih točk krivulje ${\bf f}$, ter definicijsko območje krivulje ${\bf f}$ omeji na intervale, kjer je presek neprazen. 
+Nato vlogi ${\bf f}$ in ${\bf g}$ zamenja in postopek ponavlja, dokler ne pride do željene natančnosti.
 
-Ideja metode hibridnih izrezkov je podobna kot ideja metode B\`{e}zierjevih izrezkov, le da ne opazujemo presek pasa $P$ s konveksno ovojnico kontrolnih točk krivulje ${\bf f}$, ampak z aproksimacijo krivulje ${\bf f}$ ({\em fat curve}), ki jo dobimo s pomočjo nižanja stopnje.
+Ideja metode hibridnih izrezkov je podobna kot ideja metode B\`{e}zierjevih izrezkov, le da ne opazujemo presek pasa $\mathcal{L}$ s konveksno ovojnico kontrolnih točk krivulje ${\bf f}$, ampak z območjem $\mathcal{P}$ ({\em fat curve}). Tega dobimo tako, da z nižanjem stopnje krivulje ${\bf f}$ dobimo aproksimacijo, ki jo lahko premaknemo v dve nasprotni smeri tako, da je krivulja ${\bf f}$ vsebovana v območju $\mathcal{P}$ vmes (slika \ref{slika2}). Nato krivuljo ${\bf f}$ zmanjšamo na tiste intervale, kjer je presek $\mathcal{L}\cap\mathcal{P}$ neprazen. V naslednjem koraku vlogi ${\bf f}$ in ${\bf g}$ zamenjamo in postopek ponavljamo do željene natančnosti.
+\begin{figure}[!h]
+  \centering
+    \includegraphics[width=0.45\linewidth]{2}
+  	\caption{{\em Fat line $\mathcal{L}$} in {\em fat curve $\mathcal{P}$}, ki omejujeta {\bf g} in {\bf f}.}
+  	\label{slika2}
+\end{figure}
+\medskip
 
 \section{Metoda hibridnih izrezkov}
-Naj bosta v nadaljevanju ${\bf f}$ in ${\bf g}$ ravninski B\`{e}zierjevi krivulji dani z 
-$${\bf f}(t) = \sum _{i=0}^{n} {\bf a}_i B_{i,[\alpha,\beta]}^n(t), \qquad t\in[\alpha,\beta]$$
-in
-$${\bf g}(s) = \sum _{j=0}^{m} {\bf b}_i B_{j,[\xi,\eta]}^m(s), \qquad s\in[\xi,\eta],$$
-kjer so ${\bf a}_i, {\bf b}_j \in \R ^2$ kontrolne točke od ${\bf f}$ in ${\bf g}$ ter 
+Vpeljimo nekaj oznak, ki jih bomo uporabljali v nadaljevanju. Z 
 $$
 B_{i,[\alpha,\beta]}^n(t) = \binom{n}{i} \frac{(t-\alpha)^i(\beta - t)^j}{(\beta - \alpha)^n}
 $$
-$i$-ti Bernsteinov bazni polinom stopnje $n$ na intervalu $[\alpha,\beta]$. Splošne intervale $[\alpha,\beta]$ namesto fiksnega intervala $[0,1]$ opazujemo zato, ker bo algoritem generiral zaporedje vedno manjših intervalov.
+označimo $i$-ti Bernsteinov bazni polinom stopnje $n$ na intervalu $[\alpha,\beta]$. Intervale $[\alpha,\beta]$ namesto intervala $[0,1]$ opazujemo zato, ker bo algoritem generiral zaporedje vedno manjših intervalov.
 
-\subsection{{\em Fat line} in {\em fat curve}}
+Naj bosta ${\bf f}$ in ${\bf g}$ ravninski B\`{e}zierjevi krivulji dani z 
+$${\bf f}(t) = \sum _{i=0}^{n} {\bf a}_i B_{i,[\alpha,\beta]}^n(t), \qquad t\in[\alpha,\beta]$$
+in
+$${\bf g}(s) = \sum _{j=0}^{m} {\bf b}_i B_{j,[\xi,\eta]}^m(s), \qquad s\in[\xi,\eta],$$
+kjer so ${\bf a}_i, {\bf b}_j \in \R ^2$ kontrolne točke od ${\bf f}$ oz. ${\bf g}$. Naj bo $\lVert \,\cdot\,\rVert$ Evklidska norma na $\R^2$. Definiramo še naslednje norme:
+\begin{enumerate}
+\item Normalizirana $L_2$ norma
+$$
+\lVert {\bf f} \rVert _2^{[\alpha,\beta]} = \sqrt{\frac{1}{\beta -\alpha}\int _{\alpha}^{\beta}\lVert {\bf} f(t)\rVert ^2 dt},
+$$
+\item $L_{\infty}$ norma
+$$
+\lVert {\bf f} \rVert _\infty^{[\alpha,\beta]} = \max _{t\in[\alpha,\beta]} \lVert {\bf f}(t)\rVert,
+$$
+\item BB norma
+$$
+\lVert {\bf f} \rVert _{\text{BB}}^{[\alpha,\beta]} = \max _{i=0,\ldots,n} \lVert {\bf a}_i\rVert.
+$$
+\end{enumerate}
 
-Definiramo
-\begin{equation}\label{def_delta}
-\delta = \lVert {\bf f}(t) - {\bf p}(t) \rVert _{BB}
-\end{equation}
+\input{fat_line}
 
-%\begin{definicija}
-%Funkcija $f\colon [a,b]\to\R$ je {\em zvezna}, "ce...
-%\end{definicija}
-%%
-%\begin{izrek}
-%Zvezna funkcija na zaprtem intervalu je enakomerno zvezna.
-%\end{izrek}
-%%
-%\proof
-%Izberimo $\varepsilon>0$.
-%\endproof
-
+\input{fat_curve}
 
 \subsection{Iskanje intervalov}
+Iz zgornjih dveh razdelkov vemo, da je (predznačena) razdalja točke ${\bf g}(t)$ od premice ${\bf b}_0{\bf b}_m$ med $d_{\text{min}}$ in $d_{\text{max}}$, ter da je (predznačena) razdalja točke ${\bf f}(t)$ od premice ${\bf b}_0{\bf b}_m$ med $d_1(t)$ in $d_2(t)$. Vsa tista območja, kjer je $d_1(t) < d_{\text{min}}$ in $d_2(t) > d_{\text{max}}$, lahko zavržemo. Natančneje, če najdemo rešitve enačb
+$$
+d_1(t) = d_{\text{min}} \, \text{ in } \, d_2(t) = d_{\text{max}},
+$$
+potem lahko v domeni krivulje ${\bf f}$ najdemo intervale $[\alpha _i, \beta _i]$, ki jih iščemo. V obeh enačbah iščemo ničle polinoma. Če smo krivuljo ${\bf f}$ aproksimirali s krivuljo stopnje $2$ ali $3$, potem lahko ti dve enačbi rešimo analitično, kar je v praksi najbolj učinkovita možnost.
 
-\subsection{Psevdo koda}
+\input{psevdo_koda}
 
-\begin{small}
-   \begin{algorithmic}[1]
-	\Require $({\bf f},{\bf g}, [\alpha,\beta], [\xi,\eta], k)$ : ravninski B\`{e}zierjevi krivulji, njuni domeni in stopnja aproksimacijske krivulje
-
-	\If{$|\alpha - \beta | < \epsilon$ in  $|\xi - \eta| < \epsilon$} \hfill ustavitveni pogoj
-		\State \Return $[\alpha,\beta],[\xi,\eta]$
-	\Else
-		\If{$|\alpha - \beta | < |\xi - \eta|$} \hfill želimo, da ima {\bf f} večjo domeno
-			\State $HybridClip( {\bf g}, {\bf f}, [\xi,\eta],[\alpha,\beta],k)$ 
-			\hfill zamenjamo vlogi ${\bf f}$ in ${\bf g}$
-		\Else
-			\State $L, C \gets $ {\em fat line}$({\bf g})$, {\em fat curve}$({\bf f})$ 
-			\hfill aproksimiraj ${\bf f}$ in ${\bf g}$
-			\State Najdi intervale $[\alpha _i,\beta _i]$, kjer je $L\cap C\neq \emptyset$
-			\If{$l > 0$ in $\max _{i=1,\ldots ,l}\, \{ |\alpha _i - \beta _i|\} \geq 
-				\frac{1}{2}|\alpha -\beta |$} \hfill  aproksimacija ni dobra
-				\State \Return \begin{varwidth}[t]{\linewidth}  
-					$HybridClip({\bf f},{\bf g},[\alpha,\frac{1}{2}(\alpha+\beta)],[\xi,\frac{1}{2}(\xi+\eta)],k)$\par $ 
-        \hskip\algorithmicindent
-					\cup \, HybridClip({\bf f},{\bf g},[\alpha,\frac{1}{2}(\alpha+\beta)],[\frac{1}{2}(\xi+\eta), \eta],k)$\par$
-        \hskip\algorithmicindent
-					\cup \, HybridClip({\bf f},{\bf g},[\frac{1}{2}(\alpha+\beta), \beta],[\frac{1}{2}(\xi+\eta), \eta],k)$\par$
-        \hskip\algorithmicindent
-					\cup \, HybridClip({\bf f},{\bf g},[\frac{1}{2}(\alpha+\beta), \beta],[\xi, \frac{1}{2}(\xi+\eta)],k)$
-					\end{varwidth}
-			\Else \hfill  aproksimacija je dobra
-				\State $S\gets \emptyset$
-				\For{$i=1,\ldots,l$} 
-					\State $S\gets S\cup HybridClip({\bf f},{\bf g},[\alpha _i,\beta _i], [\xi,\eta],k)$
-					\hfill rekurziven klic
-				\EndFor
-				\State \Return $S$ \hfill vrnemo rezultat
-			\EndIf
-		\EndIf
-	\EndIf
-   \end{algorithmic}
-\end{small}
+\subsection{Opombe}
 
 \input{red_konvergence}
 

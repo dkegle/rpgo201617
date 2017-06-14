@@ -1,0 +1,40 @@
+
+\subsection{Psevdo koda algoritma}\text{}
+\smallskip
+\begin{small}
+   \begin{algorithmic}[1]
+	\Require $({\bf f},{\bf g}, [\alpha,\beta], [\xi,\eta], k)$ : ravninski B\`{e}zierjevi krivulji, njuni domeni in stopnja aproksimacijske krivulje
+
+	\If{$|\alpha - \beta | < \epsilon$ in  $|\xi - \eta| < \epsilon$} \hfill ustavitveni pogoj
+		\State \Return $[\alpha,\beta],[\xi,\eta]$
+	\Else
+		\If{$|\alpha - \beta | < |\xi - \eta|$} \hfill če ima {\bf f} manjšo domeno
+			\State $HybridClip( {\bf g}, {\bf f}, [\xi,\eta],[\alpha,\beta],k)$ 
+			\hfill zamenjamo vlogi ${\bf f}$ in ${\bf g}$
+		\Else
+			\State $L, C \gets $ {\em fat line}$({\bf g})$, {\em fat curve}$({\bf f})$ 
+			\hfill aproksimiraj ${\bf f}$ in ${\bf g}$
+			\State Najdi intervale $[\alpha _i,\beta _i]$, kjer je $L\cap C\neq \emptyset$
+			\If{$l > 0$ in $\max _{i=1,\ldots ,l}\, \{ |\alpha _i - \beta _i|\} \geq 
+				\frac{1}{2}|\alpha -\beta |$} \hfill  aproksimacija ni dobra
+				\State \Return \begin{varwidth}[t]{\linewidth}  
+					$HybridClip({\bf f},{\bf g},[\alpha,\frac{1}{2}(\alpha+\beta)],[\xi,\frac{1}{2}(\xi+\eta)],k)$\par $ 
+        \hskip\algorithmicindent
+					\cup \, HybridClip({\bf f},{\bf g},[\alpha,\frac{1}{2}(\alpha+\beta)],[\frac{1}{2}(\xi+\eta), \eta],k)$\par$
+        \hskip\algorithmicindent
+					\cup \, HybridClip({\bf f},{\bf g},[\frac{1}{2}(\alpha+\beta), \beta],[\frac{1}{2}(\xi+\eta), \eta],k)$\par$
+        \hskip\algorithmicindent
+					\cup \, HybridClip({\bf f},{\bf g},[\frac{1}{2}(\alpha+\beta), \beta],[\xi, \frac{1}{2}(\xi+\eta)],k)$
+					\end{varwidth}
+			\Else \hfill  aproksimacija je dobra
+				\State $S\gets \emptyset$
+				\For{$i=1,\ldots,l$} 
+					\State $S\gets S\cup HybridClip({\bf f},{\bf g},[\alpha _i,\beta _i], [\xi,\eta],k)$
+					\hfill rekurziven klic
+				\EndFor
+				\State \Return $S$ \hfill vrnemo rezultat
+			\EndIf
+		\EndIf
+	\EndIf
+   \end{algorithmic}
+\end{small}
