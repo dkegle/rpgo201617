@@ -24,6 +24,7 @@
 
 \newtheorem{definicija}{Definicija}[section]
 \newtheorem{lema}[definicija]{Lema}
+\newtheorem{opomba}[definicija]{Opomba}
 \newtheorem{izrek}[definicija]{Izrek}
 \newtheorem{trditev}[definicija]{Trditev}
 \newtheorem{posledica}[definicija]{Posledica}
@@ -59,7 +60,7 @@ Domen Keglevič\\[6mm]
 \medskip
 % tu se zacne tekst seminarja
 \section{Uvod}
-V seminarski nalogi nas bo zanimalo kako najti presečišča dveh ravninskih B\`{e}zier\-jevih krivulj. Ta problem lahko opišemo na naslednji način. Naj bosta ${\bf f}:[\alpha,\beta]\rightarrow \R^2$ in ${\bf g}:[\xi,\eta]\rightarrow \R^2$ ravninski B\`{e}zierjevi krivulji. Želimo najti učinkovit algoritem, ki za poljuben $\epsilon >0$ vrne pare intervalov $[\alpha_i,\beta_i]$ in $[\xi_i,\eta_i]$, ki vsebujejo presečišča ${\bf f}(t_i) = {\bf g}(s_i)$, $t_i\in[\alpha_i,\beta_i]$, $s_i\in[\xi_i,\eta_i]$, tako da velja $|\alpha _i - \beta _i| < \epsilon$ in $|\xi _i - \eta _i| < \epsilon$.
+V seminarski nalogi nas bo zanimalo kako najti presečišča dveh ravninskih B\`{e}zier\-jevih krivulj. Pri tem nas ne zanimajo koordinate presečišč, temveč točke v domeni, ki se preslikajo v presečišča. Ta problem lahko formalno opišemo na naslednji način. Naj bosta ${\bf f}:[\alpha,\beta]\rightarrow \R^2$ in ${\bf g}:[\xi,\eta]\rightarrow \R^2$ ravninski B\`{e}zierjevi krivulji. Želimo najti učinkovit algoritem, ki za poljuben $\epsilon >0$ vrne pare intervalov $[\alpha_i,\beta_i]$ in $[\xi_i,\eta_i]$, ki vsebujejo presečišča ${\bf f}(t_i) = {\bf g}(s_i)$, $t_i\in[\alpha_i,\beta_i]$, $s_i\in[\xi_i,\eta_i]$, tako da velja $|\alpha _i - \beta _i| < \epsilon$ in $|\xi _i - \eta _i| < \epsilon$.
 
 Ta problem se da rešiti na več načinov. Tu bomo predstavili metodo hibridnih izrezkov, ki je razširitev metode B\`{e}zierjevih izrezkov. 
 
@@ -69,18 +70,24 @@ Nato vlogi ${\bf f}$ in ${\bf g}$ zamenja in postopek ponavlja, dokler ne pride 
 Ideja metode hibridnih izrezkov je podobna kot ideja metode B\`{e}zierjevih izrezkov, le da ne opazujemo presek pasa $\mathcal{L}$ s konveksno ovojnico kontrolnih točk krivulje ${\bf f}$, ampak z območjem $\mathcal{P}$ ({\em fat curve}). Tega dobimo tako, da z nižanjem stopnje krivulje ${\bf f}$ dobimo aproksimacijo, ki jo lahko premaknemo v dve nasprotni smeri tako, da je krivulja ${\bf f}$ vsebovana v območju $\mathcal{P}$ vmes (slika \ref{slika2}). Nato krivuljo ${\bf f}$ zmanjšamo na tiste intervale, kjer je presek $\mathcal{L}\cap\mathcal{P}$ neprazen. V naslednjem koraku vlogi ${\bf f}$ in ${\bf g}$ zamenjamo in postopek ponavljamo do željene natančnosti.
 \begin{figure}[!h]
   \centering
-    \includegraphics[width=0.45\linewidth]{2}
-  	\caption{{\em Fat line $\mathcal{L}$} in {\em fat curve $\mathcal{P}$}, ki omejujeta {\bf g} in {\bf f}.}
+    \includegraphics[width=0.40\linewidth]{2}
+  	\caption{{\em Fat line $\mathcal{L}$} in {\em fat curve $\mathcal{P}$}, ki vsebujeta {\bf g} in {\bf f}.}
   	\label{slika2}
 \end{figure}
 \medskip
 
 \section{Metoda hibridnih izrezkov}
 Vpeljimo nekaj oznak, ki jih bomo uporabljali v nadaljevanju. Z 
-$$
+\begin{equation*}
 B_{i,[\alpha,\beta]}^n(t) = \binom{n}{i} \frac{(t-\alpha)^i(\beta - t)^j}{(\beta - \alpha)^n}
-$$
+\end{equation*}
 označimo $i$-ti Bernsteinov bazni polinom stopnje $n$ na intervalu $[\alpha,\beta]$. Intervale $[\alpha,\beta]$ namesto intervala $[0,1]$ opazujemo zato, ker bo algoritem generiral zaporedje vedno manjših intervalov.
+
+\begin{opomba}
+Velja $B_{i,[\alpha,\beta]}^n(t) \geq 0$ za vsak $t\in [\alpha,\beta]$.
+\end{opomba}
+\proof V definiciji $B_{i,[\alpha,\beta]}^n(t)$ so vsi členi v števcu in imenovalcu večji ali enaki $0$.
+\endproof
 
 Naj bosta ${\bf f}$ in ${\bf g}$ ravninski B\`{e}zierjevi krivulji dani z 
 $${\bf f}(t) = \sum _{i=0}^{n} {\bf a}_i B_{i,[\alpha,\beta]}^n(t), \qquad t\in[\alpha,\beta]$$
@@ -101,25 +108,51 @@ $$
 \lVert {\bf f} \rVert _{\text{BB}}^{[\alpha,\beta]} = \max _{i=0,\ldots,n} \lVert {\bf a}_i\rVert.
 $$
 \end{enumerate}
-
+Prepričajmo se, da je $\lVert \,\cdot\, \rVert _{\text{BB}}^{[\alpha,\beta]}$ res norma. Velja $\lVert {\bf f} \rVert _{\text{BB}}^{[\alpha,\beta]} \geq 0$, saj je $\lVert {\bf a}_i\rVert \geq 0$. Velja 
+\begin{equation*}
+\lVert {\bf f} \rVert _{\text{BB}}^{[\alpha,\beta]} = 0  \Leftrightarrow 
+\max _{i=0,\ldots,n} \lVert {\bf a}_i\rVert = 0 
+ \Leftrightarrow \lVert {\bf a}_i\rVert = 0 \Leftrightarrow {\bf a}_i = {\bf 0 }
+ \Leftrightarrow {\bf f} = {\bf 0}.
+\end{equation*}
+Homogenost sledi iz enakosti 
+\begin{equation*}
+\lVert \gamma\, {\bf f} \rVert _{\text{BB}}^{[\alpha,\beta]}  = 
+\max _{i=0,\ldots,n} \lVert \gamma\, {\bf a}_i\rVert = 
+ |\gamma\, | \max _{i=0,\ldots,n}  \lVert {\bf a}_i\rVert = 
+ |\gamma\,| \lVert {\bf f} \rVert _{\text{BB}}^{[\alpha,\beta]},
+\end{equation*}
+trikotniška neenakost pa iz 
+\begin{equation*}
+\begin{split}
+\lVert {\bf f} + {\bf g} \rVert _{\text{BB}}^{[\alpha,\beta]} &= 
+\max _{i=0,\ldots,n} \lVert {\bf a}_i + {\bf b}_i \rVert 
+\leq \max _{i=0,\ldots,n} \left ( \lVert {\bf a}_i\rVert + \lVert {\bf b}_i \rVert\right ) \\
+& \leq \max _{i=0,\ldots,n} \lVert {\bf a}_i\rVert + 
+\max _{i=0,\ldots,n} \lVert {\bf b}_i \rVert = 
+\lVert {\bf f} \rVert _{\text{BB}}^{[\alpha,\beta]} +
+\lVert {\bf g} \rVert _{\text{BB}}^{[\alpha,\beta]}.
+\end{split}
+\end{equation*}
+Tudi za $\lVert \,\cdot\, \rVert _2^{[\alpha,\beta]}$ in $\lVert \,\cdot\, \rVert _\infty^{[\alpha,\beta]}$ se lahko hitro prepričamo, da ustrezata definiciji norme.
 \input{fat_line}
 
 \input{fat_curve}
 
 \subsection{Iskanje intervalov}
-Iz zgornjih dveh razdelkov vemo, da je (predznačena) razdalja točke ${\bf g}(t)$ od premice ${\bf b}_0{\bf b}_m$ med $d_{\text{min}}$ in $d_{\text{max}}$, ter da je (predznačena) razdalja točke ${\bf f}(t)$ od premice ${\bf b}_0{\bf b}_m$ med $d_1(t)$ in $d_2(t)$. Vsa tista območja, kjer je $d_1(t) < d_{\text{min}}$ in $d_2(t) > d_{\text{max}}$, lahko zavržemo. Natančneje, če najdemo rešitve enačb
+Iz zgornjih dveh razdelkov vemo, da je predznačena razdalja točke ${\bf g}(t)$ od premice ${\bf b}_0{\bf b}_m$ vsebovana v intervalu $[d_{\text{min}}, d_{\text{max}}]$, in da je predznačena razdalja točke ${\bf f}(t)$ od premice ${\bf b}_0{\bf b}_m$ vsebovana v intervalu $[d_2(t), d_1(t)]$. Zato lahko tista območja, kjer je $d_1(t) < d_{\text{min}}$ in $d_2(t) > d_{\text{max}}$, zavržemo. Splošneje, če najdemo rešitve enačb
 $$
 d_1(t) = d_{\text{min}} \, \text{ in } \, d_2(t) = d_{\text{max}},
 $$
-potem lahko v domeni krivulje ${\bf f}$ najdemo iskane intervale $[\alpha _i, \beta _i]$.
+potem lahko v domeni krivulje ${\bf f}$ najdemo iskane intervale $[\alpha _i, \beta _i]$, ki vsebujejo točke, ki se preslikajo v presečišča od ${\bf f}$ in ${\bf g}$.
 
-V obeh zgoraj navedenih enačbah iščemo ničle polinoma. Če smo krivuljo ${\bf f}$ aproksimirali s krivuljo stopnje $2$ ali $3$, potem lahko ti dve enačbi rešimo analitično, kar je v praksi najbolj učinkovita možnost.
+V obeh zgoraj navedenih enačbah iščemo ničle polinoma. Če smo krivuljo ${\bf f}$ aproksimirali s krivuljo stopnje $2$ ali $3$, potem lahko ti dve enačbi rešimo analitično. To je v praksi najbolj učinkovita možnost.
 
 \input{psevdo_koda}
 
 \input{red_konvergence}
 \section{Eksperimentalni rezultati}
-V \cite{hyb_clip} so narejeni eksperimentalni testi metode hibridnih izrezkov. Implementirani sta aproksimaciji s krivuljo stopnje $2$ in $3$ ter narejeni narejene primerjave z metodo B\`{e}zierjevih izrezkov za vse tri različne tipe presečišč in za krivulji z več kot enim presečiščem. Izkaže se, da je tudi v praksi konvergenca metode hibridnih izrezkov boljša. Pri tem je aproksimacija s krivuljo stopnje $2$ pogosto boljša kot aproksimacija s krivuljo stopnje $3$, razlog pa je verjetno računsko manj zahtevna aproksimacija. Primerjave so prikazane na sliki~\ref{fig:primeri} (povzeto po \cite{hyb_clip}).
+V \cite{hyb_clip} so opisani eksperimentalni testi metode hibridnih izrezkov. Implementirani sta aproksimaciji s krivuljo stopnje $2$ in $3$ ter narejene primerjave z metodo B\`{e}zierjevih izrezkov za vse tri različne tipe presečišč in za krivulji z več kot enim presečiščem. Izkaže se, da je tudi v praksi konvergenca metode hibridnih izrezkov boljša. Pri tem je aproksimacija s krivuljo stopnje $2$ pogosto boljša kot aproksimacija s krivuljo stopnje $3$, razlog pa je verjetno računsko manj zahtevna aproksimacija. Primerjave so prikazane na sliki~\ref{fig:primeri} (povzeto po \cite{hyb_clip}).
 
 \begin{figure}[!h]
   \begin{center}
@@ -131,12 +164,12 @@ V \cite{hyb_clip} so narejeni eksperimentalni testi metode hibridnih izrezkov. I
 \end{figure}
 
 \section{Zaključek}
-Predstavili smo metodo hibridnih izrezkov, ki omogoča izračun presečišč dveh ravninskih B\`{e}zierjevih krivulj. Algoritem temelji na aproksimaciji ene in druge krivulje z območjema, ki krivulji vsebujeta (vsak eno), in zmanjšanjem domene le na tiste dele, kjer je presek območij neprazen. Na ta način dobimo zaporedje vedno manjših intervalov, ki konvergirajo proti presečiščem.
+Predstavili smo metodo hibridnih izrezkov, ki omogoča izračun presečišč dveh ravninskih B\`{e}zierjevih krivulj. Algoritem temelji na aproksimaciji ene in druge krivulje z območjema, ki krivulji vsebujeta in zmanjšanjem domene le na tiste dele, kjer je presek območij neprazen. Na ta način dobimo zaporedje vedno manjših intervalov, ki konvergirajo proti presečiščem.
 
 Pokazali smo, da je v primeru transverzalnih presečišč konvergenca vsaj kvadratična. Tega nismo mogli pokazati za primer tangentnih in degeneriranih presečišč. V primeru tangentnih presečišč algoritem degenerira v metodo {\em deli in vladaj}, saj območja ne omejijo krivulj dobro. V primeru degeneriranih presečišč je aproksimacija boljša.
 Podobno sliko pokažejo tudi eksperimentalni rezultati. Hitrost konvergence transverzalnih presečišč je najboljša, hitro sledijo degenerirana presečišča in precej slabše se odrežejo tangentna presečišča.
 
-Zaključimo, da je metoda hibridnih izrezkov uporabna tudi v praksi, saj najde vsa presečišča in je hitrejša od metode B\`{e}zierjevih izrezkov. Možnosti za posplošitev metode hibridnih izrezkov vključujejo izračun presečišč dveh racionalnih B\`{e}zierjevih krivulj in izračun preseka dveh B\`{e}zierjevih ploskev.
+Zaključimo, da je metoda hibridnih izrezkov uporabna tudi v praksi, saj najde vsa presečišča in je hitrejša od metode B\`{e}zierjevih izrezkov. Možnosti za razširitve metode hibridnih izrezkov vključujejo izračun presečišč dveh racionalnih B\`{e}zierjevih krivulj in izračun preseka dveh B\`{e}zierjevih ploskev.
 
 % seznam uporabljene literature
 \begin{thebibliography}{99}
@@ -148,6 +181,8 @@ Aided Des., 1990, 538--49.
 \bibitem{hyb_clip}Qi Lou, Ligang Liu, {\em Curve intersection using hybrid clipping}, Computers and
 Graphics, 36 (5), 2012, 309-320.
 
+\bibitem{ls_sq}Zhang R., Wang G., {\em Constrained B\`{e}zier curves best multi-degree reduction in
+the $L_2$-norm}, Prog. Nat. Sci., 2005, 15(9): 843–50
 
 %\bibitem{oznaka-enote-za-sklic}
 %\textcolor{Red}{I.~Priimek, {\em Naslov "clanka}, okraj"sano ime revije {\bf letnik revije} (leto %izida) strani od--do.}
