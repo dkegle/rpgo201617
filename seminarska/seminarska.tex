@@ -104,6 +104,7 @@ Vsoto razpišemo in dobimo
 \end{equation*}
 \endproof
 
+
 Naj bosta ${\bf f}$ in ${\bf g}$ ravninski B\`{e}zierjevi krivulji dani z 
 $${\bf f}(t) = \sum _{i=0}^{n} {\bf a}_i B_{i,[\alpha,\beta]}^n(t), \qquad t\in[\alpha,\beta]$$
 in
@@ -159,26 +160,18 @@ Drugače povedano, navedene norme so invariantne glede na afino transformacijo d
 \input{fat_line}
 
 \input{fat_curve}
-
-\subsection{Iskanje intervalov}
-Iz zgornjih dveh razdelkov vemo, da je predznačena razdalja točke ${\bf g}(t)$ od premice ${\bf b}_0{\bf b}_m$ vsebovana v intervalu $[d_{\text{min}}, d_{\text{max}}]$, in da je predznačena razdalja točke ${\bf f}(t)$ od premice ${\bf b}_0{\bf b}_m$ vsebovana v intervalu $[d_2(t), d_1(t)]$. Zato lahko tista območja, kjer je $d_1(t) < d_{\text{min}}$ in $d_2(t) > d_{\text{max}}$, zavržemo. Splošneje, če najdemo rešitve enačb
-$$
-d_1(t) = d_{\text{min}} \, \text{ in } \, d_2(t) = d_{\text{max}},
-$$
-potem lahko v domeni krivulje ${\bf f}$ najdemo iskane intervale $[\alpha _i, \beta _i]$, ki vsebujejo točke, ki se preslikajo v presečišča od ${\bf f}$ in ${\bf g}$.
-
-V obeh zgoraj navedenih enačbah iščemo ničle polinoma. Če smo krivuljo ${\bf f}$ aproksimirali s krivuljo stopnje $2$ ali $3$, potem lahko ti dve enačbi rešimo analitično. To je v praksi najbolj učinkovita možnost.
+\input{iskanje_intervalov}
 
 \input{psevdo_koda}
 
 \input{red_konvergence}
 \section{Eksperimentalni rezultati}
-V \cite{hyb_clip} so opisani eksperimentalni testi metode hibridnih izrezkov. Implementirani sta aproksimaciji s krivuljo stopnje $2$ in $3$ ter narejene primerjave z metodo B\`{e}zierjevih izrezkov za vse tri različne tipe presečišč in za krivulji z več kot enim presečiščem. Izkaže se, da je tudi v praksi konvergenca metode hibridnih izrezkov boljša. Pri tem je aproksimacija s krivuljo stopnje $2$ pogosto boljša kot aproksimacija s krivuljo stopnje $3$, razlog pa je verjetno računsko manj zahtevna aproksimacija. Primerjave so prikazane na sliki~\ref{fig:primeri} (povzeto po \cite{hyb_clip}).
+V \cite{hyb_clip} so opisani eksperimentalni testi metode hibridnih izrezkov. Implementirani sta aproksimaciji s krivuljo stopnje $2$ in $3$ ter narejene primerjave z metodo B\`{e}zierjevih izrezkov za vse tri različne tipe presečišč in za krivulji z več kot enim presečiščem. Izkaže se, da je tudi v praksi konvergenca metode hibridnih izrezkov boljša. Pri tem je aproksimacija s krivuljo stopnje $2$ pogosto boljša kot aproksimacija s krivuljo stopnje $3$, razlog pa je verjetno računsko manj zahtevna aproksimacija. Primerjave so prikazane na sliki~\ref{fig:primeri}.
 
 \begin{figure}[!h]
   \begin{center}
     \includegraphics[width=0.9\linewidth]{primeri}
-  \caption{Primerjave časovne zahtevnosti.}
+  \caption{Primerjave časovne zahtevnosti, vzeto iz \cite{hyb_clip}.}
   \label{fig:primeri}
   \end{center}
   

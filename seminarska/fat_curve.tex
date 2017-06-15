@@ -13,21 +13,11 @@ $$
 \lVert {\bf f}(t) - {\bf p}(t) \rVert = \lVert \sum _{i=0}^n({\bf a}_i-{\bf c}_i)B_{i,[\alpha,\beta]}^n(t) \rVert
 \leq \sum _{i=0}^n\lVert{\bf a}_i-{\bf c}_i\rVert B_{i,[\alpha,\beta]}^n(t) \leq \delta.
 $$
-Sledi, da ${\bf f}(t)$ leži v območju $\mathcal{P}$ med ${\bf p}_1(t) = \hat{{\bf p}}(t) + \delta {\bf n}$ in ${\bf p}_2(t) = \hat{{\bf p}}(t) - \delta {\bf n}$, kjer je ${\bf n}$ normala, ki je pravokotna na ${\bf b}_m - {\bf b}_0$. Območje $\mathcal{P}$ imenujemo {\em fat curve}. Naj bo
-\begin{gather*}
-d(t) = {\bf n}\cdot({\bf f}(t) - {\bf b}_0),\\
-d_0(t)= {\bf n}\cdot ({\bf p}(t) - {\bf b}_0),\\
-d_1(t) = {\bf n} ({\bf p}_1(t) - {\bf b}_0) = d_0(t) + \delta, \\
-d_2(t) = {\bf n} ({\bf p}_2(t) - {\bf b}_0) = d_0(t) - \delta.
-\end{gather*}
-Potem velja ocena
-$$
-|d(t)-d_0(t)|=|{\bf n}\cdot({\bf f}(t)-{\bf p}(t))|\leq \lVert {\bf n}\rVert\cdot \lVert {\bf f}(t) - {\bf p}(t) \rVert \leq \lVert {\bf f}(t) - {\bf p}(t) \rVert _{\infty}^{[\alpha,\beta]} \leq \delta.
-$$
-To pomeni, da $d(t)$ leži v pasu med $d_1(t)$ in $d_2(t)$ kot prikazuje slika \ref{slika4}.
+Sledi, da ${\bf f}(t)$ leži v območju $\mathcal{P}$ med ${\bf p}_1(t) = \hat{{\bf p}}(t) + \delta {\bf n}$ in ${\bf p}_2(t) = \hat{{\bf p}}(t) - \delta {\bf n}$, kjer je ${\bf n}$ normala, ki je pravokotna na ${\bf b}_m - {\bf b}_0$. Območje $\mathcal{P}$ imenujemo {\em fat curve}.
 \begin{figure}[!h]
     \centering 
-    \includegraphics[width=0.6\textwidth]{dist}
-    \caption{}
-  	\label{slika4}
+    \includegraphics[width=0.44\textwidth]{fat_curve_color}
+    \caption{Krivulja {\bf f} in {\em fat curve}.}
+  	%\caption{{\em Fat line $\mathcal{L}$}.}
+  	\label{slika3}
 \end{figure}
