@@ -1,6 +1,6 @@
 
 \subsection{\em Fat curve}
-Naj bo ${\bf \hat{p}}(t)$ polinom stopnje $k < n$, ki optimalno aproksimira ${\bf f}(t)$ glede na normo $L_2$. Konstruiramo ga s pomočjo nižanja stopnje krivulje ${\bf f}(t)$ po metodi najmanjših kvadratov. Podrobnosti so v \cite{ls_sq}. Sedaj polinomu ${\bf \hat{p}}(t)$ s pomočjo višanja stopnje lahko zvišamo stopnjo do $n$ in zapišemo
+Naj bo ${\bf \hat{p}}(t)$ polinom stopnje $k < n$, ki optimalno aproksimira ${\bf f}(t)$ glede na normo $L_2$. Konstruiramo ga s pomočjo nižanja stopnje krivulje ${\bf f}(t)$, podrobnosti o tem kako to naredimo so v \cite{ls_sq}. Sedaj polinomu ${\bf \hat{p}}(t)$ s pomočjo višanja stopnje lahko zvišamo stopnjo do $n$ in zapišemo
 $$
 {\bf \hat{p}}(t) = {\bf p}(t) = \sum _{i=0}^n {\bf c}_iB_{i,[\alpha,\beta]}^n(t),
 $$
@@ -13,7 +13,7 @@ $$
 \lVert {\bf f}(t) - {\bf p}(t) \rVert = \lVert \sum _{i=0}^n({\bf a}_i-{\bf c}_i)B_{i,[\alpha,\beta]}^n(t) \rVert
 \leq \sum _{i=0}^n\lVert{\bf a}_i-{\bf c}_i\rVert B_{i,[\alpha,\beta]}^n(t) \leq \delta.
 $$
-Sledi, da ${\bf f}(t)$ leži med ${\bf p}_1(t) = \hat{{\bf p}}(t) + \delta {\bf n}$ in ${\bf p}_2(t) = \hat{{\bf p}}(t) - \delta {\bf n}$, kjer je ${\bf n}$ normala, ki je pravokotna na ${\bf b}_m - {\bf b}_0$ (kot v {\em fat line}). Naj bo
+Sledi, da ${\bf f}(t)$ leži v območju $\mathcal{P}$ med ${\bf p}_1(t) = \hat{{\bf p}}(t) + \delta {\bf n}$ in ${\bf p}_2(t) = \hat{{\bf p}}(t) - \delta {\bf n}$, kjer je ${\bf n}$ normala, ki je pravokotna na ${\bf b}_m - {\bf b}_0$. Območje $\mathcal{P}$ imenujemo {\em fat curve}. Naj bo
 \begin{gather*}
 d(t) = {\bf n}\cdot({\bf f}(t) - {\bf b}_0),\\
 d_0(t)= {\bf n}\cdot ({\bf p}(t) - {\bf b}_0),\\

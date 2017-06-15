@@ -79,14 +79,29 @@ Ideja metode hibridnih izrezkov je podobna kot ideja metode B\`{e}zierjevih izre
 \section{Metoda hibridnih izrezkov}
 Vpeljimo nekaj oznak, ki jih bomo uporabljali v nadaljevanju. Z 
 \begin{equation*}
-B_{i,[\alpha,\beta]}^n(t) = \binom{n}{i} \frac{(t-\alpha)^i(\beta - t)^j}{(\beta - \alpha)^n}
+B_{i,[\alpha,\beta]}^n(t) = \binom{n}{i} \frac{(t-\alpha)^i(\beta - t)^{n-i}}{(\beta - \alpha)^n}
 \end{equation*}
 označimo $i$-ti Bernsteinov bazni polinom stopnje $n$ na intervalu $[\alpha,\beta]$. Intervale $[\alpha,\beta]$ namesto intervala $[0,1]$ opazujemo zato, ker bo algoritem generiral zaporedje vedno manjših intervalov.
 
-\begin{opomba}
+\begin{trditev}
 Velja $B_{i,[\alpha,\beta]}^n(t) \geq 0$ za vsak $t\in [\alpha,\beta]$.
-\end{opomba}
+\end{trditev}
 \proof V definiciji $B_{i,[\alpha,\beta]}^n(t)$ so vsi členi v števcu in imenovalcu večji ali enaki $0$.
+\endproof
+\begin{trditev}
+Velja $\sum _{i=0}^n{B_{i,[\alpha,\beta]}^n(t)} = 1$.
+\end{trditev}
+\proof
+Vsoto razpišemo in dobimo
+\begin{equation*}
+\begin{split}
+\sum _{i=0}^n{B_{i,[\alpha,\beta]}^n(t)} = &
+\sum _{i=0}^n \binom{n}{i} \frac{(t-\alpha)^i(\beta - t)^{n-i}}{(\beta - \alpha)^n} \\
+=& 
+\frac{1}{(\beta - \alpha)^n}\sum _{i=0}^n \binom{n}{i}(t-\alpha)^i(\beta - t)^{n-i} \\
+= &\frac{1}{(\beta - \alpha)^n} \cdot ((t - \alpha) + (\beta - t))^n = 1.
+\end{split}
+\end{equation*}
 \endproof
 
 Naj bosta ${\bf f}$ in ${\bf g}$ ravninski B\`{e}zierjevi krivulji dani z 
