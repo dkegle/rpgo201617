@@ -11,7 +11,7 @@ Spomnimo se, da za poljubni normi $\lVert\, \cdot\, \rVert _1$ in $\lVert\, \cdo
 \begin{equation}\label{norm_equiv}
 C_1 \lVert v\rVert _2 \leq \lVert v\rVert _1 \leq C_2 \lVert v\rVert _2, \; v\in V.
 \end{equation}
-Zato obstajata konstanti $D_1$ in $D_2$, da je $\lVert {\bf r}\rVert _{BB}^{[\alpha,\beta]} \leq D_1 \lVert {\bf r}\rVert _2^{[\alpha,\beta]}$ in $\lVert {\bf r}\rVert _{2}^{[\alpha,\beta]} \leq D_2 \lVert {\bf r}\rVert _\infty^{[\alpha,\beta]}$ za vsak ${\bf r}\in  \Pi _{[\alpha,\beta]}^n$. Pri tem konstanti $D_1$ in $D_2$ nista odvisni od intervala $[\alpha,\beta]$, saj so norme invariantne glede na njegovo afino transformacijo.
+Zato obstajata konstanti $D_1$ in $D_2$, da je $\lVert {\bf r}\rVert _{BB}^{[\alpha,\beta]} \leq D_1 \lVert {\bf r}\rVert _2^{[\alpha,\beta]}$ in $\lVert {\bf r}\rVert _{2}^{[\alpha,\beta]} \leq D_2 \lVert {\bf r}\rVert _\infty^{[\alpha,\beta]}$ za vsak ${\bf r}\in  \Pi _{[\alpha,\beta]}^n$. Pri tem konstanti $D_1$ in $D_2$ nista odvisni od intervala $[\alpha,\beta]$, saj so norme invariantne glede afine transformacije domene.
 
 Od tod sledi, da je 
 $\lVert {\bf f} - {\bf p} \rVert _{BB}^{[\alpha,\beta]} \leq D_1 \lVert {\bf f} - {\bf p} \rVert _{2}^{[\alpha,\beta]}$. Naj bodo komponente ${\bf q}_\alpha$ Taylorjevi polinomi stopnje $k$ razviti okrog točke $t = \alpha$ za vsako komponento krivulje ${\bf f}$. Potem velja
@@ -37,7 +37,7 @@ Naj bo ${\bf f}$ ravninska B\`{e}zierjeva krivulja stopnje $n$. Potem obstajajo 
 $\lVert {\bf f}^{(j)} - {\bf p}^{(j)} \rVert _{\infty} \leq C_{j}|\alpha - \beta|^{k+1-j}$, za $j=0,1,\ldots,k$. 
 \end{lema}
 \proof
-Definirajmo novo normo z naslednjim predpisom
+Definirajmo novo normo s predpisom
 $$
 \lVert {\bf r}\rVert _{*}^{[\alpha,\beta]} = \lVert {\bf r}\rVert _\infty^{[\alpha,\beta]} + |\alpha - \beta|\lVert {\bf r}'\rVert _\infty^{[\alpha,\beta]} + \ldots + 
  |\alpha - \beta|^k\lVert {\bf r}^{(k)}\rVert _\infty^{[\alpha,\beta]}.
@@ -46,15 +46,15 @@ To je res norma, saj je $\lVert \,\cdot\, \rVert _\infty$ norma. Zaradi invarian
 $$
 \lVert {\bf r}\rVert _{*}^{[\alpha,\beta]} \leq D_1 \lVert {\bf r}\rVert _{2}^{[\alpha,\beta]}.
 $$
-Torej je 
+Po eni strani je
 \begin{equation}\label{lema2:en1}
 \begin{split}
 \lVert {\bf f} - {\bf p}\rVert _{*}^{[\alpha,\beta]}  =  \lVert {\bf f} - {\bf p}\rVert _\infty^{[\alpha,\beta]}  &+  |\alpha - \beta|\lVert {\bf f}' - {\bf p}'\rVert _\infty^{[\alpha,\beta]} + \ldots +\\ 
    & +  |\alpha - \beta|^k\lVert {\bf f}^{(k)} - {\bf p}^{(k)}\rVert _\infty^{[\alpha,\beta]} \leq 
- D_1 \lVert {\bf f} - {\bf p}\rVert _{2}^{[\alpha,\beta]}.
+ D_1 \lVert {\bf f} - {\bf p}\rVert _{2}^{[\alpha,\beta]},
  \end{split}
 \end{equation}
-Po drugi strani lahko (podobno kot v lemi \ref{prvalema}) s pomočjo Taylorjevega polinoma in izreka o ostanku ocenimo
+po drugi strani lahko (podobno kot v lemi \ref{prvalema}) s pomočjo Taylorjevega polinoma in izreka o ostanku ocenimo
 \begin{equation}\label{lema2:en2}
 \begin{split}
 D_1 \lVert {\bf f} - {\bf p}\rVert _{2}^{[\alpha,\beta]} \leq 
@@ -107,7 +107,7 @@ $$
 |\alpha _{i+1}-\beta _{i+1}| = h_{i+1,{\bf f}} \leq L_{i+1} = l_{i+1,1} + l_{i+1,2} + l_{i+1,3}.
 $$
 Želimo oceniti člene na desni strani neenakosti. Ker je $\frac{\omega}{4} = \frac{d_{max}-d_{min}}{l_{i+1,1}  + l_{i+1,3}}$ je
-\begin{equation}
+\begin{equation}\label{lp13}
 l_{i+1,1}  + l_{i+1,3} = \frac{4(d_{max} - d_{min})}{\omega}.
 \end{equation}
 Želimo oceniti še člen $l_{i+1,2}$. V ta namen si najprej oglejmo ali sta funkciji $d_1(t)$ in $d_2(t)$ naraščajoči. Najprej opazimo, da obstaja tak $\epsilon _1>0$, da je za dovolj velike $i$  
@@ -143,15 +143,15 @@ d'(t)<\frac{\omega}{2},
  in skupaj z \ref{tretja_ocena} dobimo, da je $d_1'(t) = d_2'(t) > \frac{\omega}{4}$. Torej smo ugotovili, da sta funkciji $d_1(t)$ in $d_2(t)$ strogo naraščajoči na dovolj poznih intervalih $[\alpha _i, \beta _i]$.
 
 Od tod sledi, da za poljuben $y_0$, za katerega velja $d_1(\alpha _i) < y_0 < d_2(\beta _i)$, velja, da imata enačbi $d_1(t)=y_0$ in $d_2(t) = y_0$ rešitvi $t_1$ in $t_2$ na intervalu $[\alpha _i, \beta _i]$. Zato je
-$$
+\begin{equation}\label{lp2}
 l_{i+1, 2} \leq \sup _{y_0\in (d_1(\alpha _i), d_2(\beta _i))} \{ |t_1-t_2|\, ; \, d_1(t_1)=d_2(t_2)=y_0\}.
-$$
+\end{equation}
 Če najdemo oceno za $|t_1-t_2|$, potem lahko s pomočjo zgornje enačbe ocenimo $l_{i+1,2}$. Oceno za $|t_1-t_2|$ bomo dobili na sledeč način. 
 Opazimo, da za $d_1(t_1) = d_2(t_2) = y_0$ velja
 $$
 {\bf n}\cdot ({\bf p} (t_1) - {\bf p}(t_2)) = 2\delta,
 $$
-kjer je $\delta$ kot v \ref{def_delta}. Naj bo ${\bf p}(t)=(x(t),y(t))$. Potem po Lagrange-ovem izreku o srednji vrednosti obstajata takšna $t^{\star}$ in $t^{\diamond}$, da je
+kjer je $\delta$ kot v \ref{def_delta}. Naj bo ${\bf p}(t)=(x(t),y(t))$. Potem po Lagrangeovem izreku o srednji vrednosti obstajata takšna $t^{\star}$ in $t^{\diamond}$, da je
 $$
 {\bf p}(t_1) - {\bf p}(t_2) = (x(t_1) - x(t_2), y(t_1) - y(t_2)) = (x'(t^{\star})(t_1-t_2),y'(t^{\diamond})(t_1-t_2)).
 $$
@@ -187,9 +187,15 @@ Ker je $2\delta _i = {\bf n}\cdot({\bf p}(t_1) - {\bf p}(t_2)) = (t_1-t_2){\bf n
 $$
 |t_1-t_2| < \frac{2\delta _i}{\omega /4 } = \frac{8\delta _i}{\omega}.
 $$
-
-
+Zgornja neenakost in oceni \ref{lp13} ter \ref{lp2} nam dajo 
+$$
+|\alpha _{i+1}-\beta _{i+1}| \leq L_{i+1} \leq \frac{8\delta _i}{\omega} + 
+\frac{4(d_{\text{max}} - d_{\text{min}})}{\omega}.
+$$
+Po lemi \ref{drugalema} je $\delta _i\leq {C_1} |\alpha _i-\beta _i|^{k+1}$. Velja tudi $d_{\text{max}} - d_{\text{min}} < C_2 |\xi _i-\eta _i|^2$ in od tod sledi trditev.
 \endproof
+
+
 \begin{figure}[!h]
 %\begin{figure}
   \begin{center}
@@ -198,5 +204,4 @@ $$
   \label{slika1}
   \end{center}
 %  \end{figure}
-
 \end{figure}
