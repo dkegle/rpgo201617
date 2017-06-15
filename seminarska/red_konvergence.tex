@@ -1,13 +1,7 @@
 
 \section{Red konvergence}
 
-\begin{trditev}\label{norm_invariance}
-
-\textcolor{red}{invarianca norm za afine transormacije}
-\end{trditev}
-\proof
-
-\endproof
+Zanima nas ali lahko povemo kaj o redu konvergence. Izkaže se, da lahko za nekatere (pogoste) primere dokažemo, da je red konvergence vsaj kvadratičen. Za ta dokaz najprej potrebujemo dve pomožni lemi.
 
 \begin{lema}\label{prvalema}
 Naj bo ${\bf f}$ ravninska B\`{e}zierjeva krivulja in ${\bf p}$ njena optimalna $L_2$ aproksimacija stopnje $k$. Potem obstaja konstanta $C$, da za poljuben interval $[\alpha,\beta]\subseteq[0,1]$ velja $\lVert {\bf f} - {\bf p} \rVert _{BB}^{[\alpha,\beta]} \leq C |\alpha - \beta|^{k+1}$.
@@ -17,7 +11,7 @@ Spomnimo se, da za poljubni normi $\lVert\, \cdot\, \rVert _1$ in $\lVert\, \cdo
 \begin{equation}\label{norm_equiv}
 C_1 \lVert v\rVert _2 \leq \lVert v\rVert _1 \leq C_2 \lVert v\rVert _2, \; v\in V.
 \end{equation}
-Zato obstajata konstanti $D_1$ in $D_2$, da je $\lVert {\bf r}\rVert _{BB}^{[\alpha,\beta]} \leq D_1 \lVert {\bf r}\rVert _2^{[\alpha,\beta]}$ in $\lVert {\bf r}\rVert _{2}^{[\alpha,\beta]} \leq D_2 \lVert {\bf r}\rVert _\infty^{[\alpha,\beta]}$ za vsak ${\bf r}\in  \Pi _{[\alpha,\beta]}^n$. Pri tem konstanti $D_1$ in $D_2$ nista odvisni od intervala $[\alpha,\beta]$, saj so po trditvi \ref{norm_invariance} norme invariantne glede na afine transformacije.
+Zato obstajata konstanti $D_1$ in $D_2$, da je $\lVert {\bf r}\rVert _{BB}^{[\alpha,\beta]} \leq D_1 \lVert {\bf r}\rVert _2^{[\alpha,\beta]}$ in $\lVert {\bf r}\rVert _{2}^{[\alpha,\beta]} \leq D_2 \lVert {\bf r}\rVert _\infty^{[\alpha,\beta]}$ za vsak ${\bf r}\in  \Pi _{[\alpha,\beta]}^n$. Pri tem konstanti $D_1$ in $D_2$ nista odvisni od intervala $[\alpha,\beta]$, saj so norme invariantne glede na njegovo afino transformacijo.
 
 Od tod sledi, da je 
 $\lVert {\bf f} - {\bf p} \rVert _{BB}^{[\alpha,\beta]} \leq D_1 \lVert {\bf f} - {\bf p} \rVert _{2}^{[\alpha,\beta]}$. Naj bodo komponente ${\bf q}_\alpha$ Taylorjevi polinomi stopnje $k$ razviti okrog točke $t = \alpha$ za vsako komponento krivulje ${\bf f}$. Potem velja
@@ -48,25 +42,29 @@ $$
 \lVert {\bf r}\rVert _{*}^{[\alpha,\beta]} = \lVert {\bf r}\rVert _\infty^{[\alpha,\beta]} + |\alpha - \beta|\lVert {\bf r}'\rVert _\infty^{[\alpha,\beta]} + \ldots + 
  |\alpha - \beta|^k\lVert {\bf r}^{(k)}\rVert _\infty^{[\alpha,\beta]}.
 $$
-To je res norma, saj je $\lVert \,\cdot\, \rVert _\infty$ norma. Po trditvi \ref{norm_invariance} in iz \textcolor{Red}{neka referenca} sledi, da obstaja konstanta $D_1$, da je 
+To je res norma, saj je $\lVert \,\cdot\, \rVert _\infty$ norma. Zaradi invariance norm pod afino transformacijo obstaja konstanta $D_1$, ki je neodvisna od intervala $[\alpha,\beta]$, tako da je 
 $$
 \lVert {\bf r}\rVert _{*}^{[\alpha,\beta]} \leq D_1 \lVert {\bf r}\rVert _{2}^{[\alpha,\beta]}.
 $$
-S pomočjo te ocene lahko zapišemo 
-\begin{align*}
+Torej je 
+\begin{equation}\label{lema2:en1}
+\begin{split}
 \lVert {\bf f} - {\bf p}\rVert _{*}^{[\alpha,\beta]}  =  \lVert {\bf f} - {\bf p}\rVert _\infty^{[\alpha,\beta]}  &+  |\alpha - \beta|\lVert {\bf f}' - {\bf p}'\rVert _\infty^{[\alpha,\beta]} + \ldots +\\ 
    & +  |\alpha - \beta|^k\lVert {\bf f}^{(k)} - {\bf p}^{(k)}\rVert _\infty^{[\alpha,\beta]} \leq 
- D_1 \lVert {\bf f} - {\bf p}\rVert _{2}^{[\alpha,\beta]}
-\end{align*}
-Sedaj podobno kot v lemi \ref{prvalema} s pomočjo Taylorjevega polinoma in izreka o ostanku ocenimo
-\begin{align*}
+ D_1 \lVert {\bf f} - {\bf p}\rVert _{2}^{[\alpha,\beta]}.
+ \end{split}
+\end{equation}
+Po drugi strani lahko (podobno kot v lemi \ref{prvalema}) s pomočjo Taylorjevega polinoma in izreka o ostanku ocenimo
+\begin{equation}\label{lema2:en2}
+\begin{split}
 D_1 \lVert {\bf f} - {\bf p}\rVert _{2}^{[\alpha,\beta]} \leq 
 D_1 \lVert {\bf f} - {\bf q}_\alpha\rVert _{2}^{[\alpha,\beta]} \leq 
 D_1D_2 \lVert {\bf f} - &{\bf q}_\alpha\rVert _{\infty}^{[\alpha,\beta]} \leq \\
 \frac{\sqrt{2}}{(k+1)!}  D_1D_2\max _{t\in [0,1]}& \lVert {\bf f}^{(k+1)}(t_0) \rVert |\alpha - \beta|^{k+1}.
-\end{align*}
+\end{split}
+\end{equation}
 \endproof
-
+Iz \ref{lema2:en1} in \ref{lema2:en2} sledijo ocene iz leme.
 \begin{definicija}
 %\in
 %\in \Pi _{[\xi,\eta]}^m

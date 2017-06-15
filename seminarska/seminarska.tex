@@ -108,11 +108,11 @@ Naj bosta ${\bf f}$ in ${\bf g}$ ravninski B\`{e}zierjevi krivulji dani z
 $${\bf f}(t) = \sum _{i=0}^{n} {\bf a}_i B_{i,[\alpha,\beta]}^n(t), \qquad t\in[\alpha,\beta]$$
 in
 $${\bf g}(s) = \sum _{j=0}^{m} {\bf b}_i B_{j,[\xi,\eta]}^m(s), \qquad s\in[\xi,\eta],$$
-kjer so ${\bf a}_i, {\bf b}_j \in \R ^2$ kontrolne točke od ${\bf f}$ oz. ${\bf g}$. Naj bo $\lVert \,\cdot\,\rVert$ Evklidska norma na $\R^2$. Definiramo še naslednje norme:
+kjer so ${\bf a}_i, {\bf b}_j \in \R ^2$ kontrolne točke od ${\bf f}$ oz. ${\bf g}$. Naj bo $\lVert \,\cdot\,\rVert$ Evklidska norma na $\R^2$. Naj bo $\Pi _{[\alpha,\beta]}^n$ vektorski prostor ravninskih B\`{e}zierjevih krivulj stopnje $n$. Na njem definiramo naslednje norme:
 \begin{enumerate}
 \item Normalizirana $L_2$ norma
 $$
-\lVert {\bf f} \rVert _2^{[\alpha,\beta]} = \sqrt{\frac{1}{\beta -\alpha}\int _{\alpha}^{\beta}\lVert {\bf} f(t)\rVert ^2 dt},
+\lVert {\bf f} \rVert _2^{[\alpha,\beta]} = \sqrt{\frac{1}{\beta -\alpha}\int _{\alpha}^{\beta}\lVert {\bf f}(t)\rVert ^2 dt},
 $$
 \item $L_{\infty}$ norma
 $$
@@ -149,7 +149,13 @@ trikotniška neenakost pa iz
 \lVert {\bf g} \rVert _{\text{BB}}^{[\alpha,\beta]}.
 \end{split}
 \end{equation*}
-Tudi za $\lVert \,\cdot\, \rVert _2^{[\alpha,\beta]}$ in $\lVert \,\cdot\, \rVert _\infty^{[\alpha,\beta]}$ se lahko hitro prepričamo, da ustrezata definiciji norme.
+Tudi za $\lVert \,\cdot\, \rVert _2^{[\alpha,\beta]}$ in $\lVert \,\cdot\, \rVert _\infty^{[\alpha,\beta]}$ se lahko hitro prepričamo, da ustrezata definiciji norme. Za vse navedene norme in poljubno afino preslikavo $\mathcal{A}: t\mapsto A_0 + tA_1$ velja tudi naslednja enakost 
+\begin{equation*}
+\lVert {\bf f} \rVert _{\ast}^{[\alpha,\beta]} = 
+\lVert {\bf f} \circ \mathcal{A}^{-1} \rVert _{\ast}^{\mathcal{A}([\alpha,\beta])}.
+\end{equation*}
+Drugače povedano, navedene norme so invariantne glede na afino transformacijo domene.
+
 \input{fat_line}
 
 \input{fat_curve}
