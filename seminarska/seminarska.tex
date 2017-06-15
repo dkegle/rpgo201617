@@ -111,28 +111,49 @@ Iz zgornjih dveh razdelkov vemo, da je (predznačena) razdalja točke ${\bf g}(t
 $$
 d_1(t) = d_{\text{min}} \, \text{ in } \, d_2(t) = d_{\text{max}},
 $$
-potem lahko v domeni krivulje ${\bf f}$ najdemo intervale $[\alpha _i, \beta _i]$, ki jih iščemo. V obeh enačbah iščemo ničle polinoma. Če smo krivuljo ${\bf f}$ aproksimirali s krivuljo stopnje $2$ ali $3$, potem lahko ti dve enačbi rešimo analitično, kar je v praksi najbolj učinkovita možnost.
+potem lahko v domeni krivulje ${\bf f}$ najdemo iskane intervale $[\alpha _i, \beta _i]$.
+
+V obeh zgoraj navedenih enačbah iščemo ničle polinoma. Če smo krivuljo ${\bf f}$ aproksimirali s krivuljo stopnje $2$ ali $3$, potem lahko ti dve enačbi rešimo analitično, kar je v praksi najbolj učinkovita možnost.
 
 \input{psevdo_koda}
 
-\subsection{Opombe}
-
 \input{red_konvergence}
+\section{Eksperimentalni rezultati}
+V \cite{hyb_clip} so narejeni eksperimentalni testi metode hibridnih izrezkov. Implementirani sta aproksimaciji s krivuljo stopnje $2$ in $3$ ter narejeni narejene primerjave z metodo B\`{e}zierjevih izrezkov za vse tri različne tipe presečišč in za krivulji z več kot enim presečiščem. Izkaže se, da je tudi v praksi konvergenca metode hibridnih izrezkov boljša. Pri tem je aproksimacija s krivuljo stopnje $2$ pogosto boljša kot aproksimacija s krivuljo stopnje $3$, razlog pa je verjetno računsko manj zahtevna aproksimacija. Primerjave so prikazane na sliki~\ref{fig:primeri} (povzeto po \cite{hyb_clip}).
 
-\section{Zaključki}
-grafi, komentarji
+\begin{figure}[!h]
+  \begin{center}
+    \includegraphics[width=0.9\linewidth]{primeri}
+  \caption{Primerjave časovne zahtevnosti.}
+  \label{fig:primeri}
+  \end{center}
+  
+\end{figure}
+
+\section{Zaključek}
+Predstavili smo metodo hibridnih izrezkov, ki omogoča izračun presečišč dveh ravninskih B\`{e}zierjevih krivulj. Algoritem temelji na aproksimaciji ene in druge krivulje z območjema, ki krivulji vsebujeta (vsak eno), in zmanjšanjem domene le na tiste dele, kjer je presek območij neprazen. Na ta način dobimo zaporedje vedno manjših intervalov, ki konvergirajo proti presečiščem.
+
+Pokazali smo, da je v primeru transverzalnih presečišč konvergenca vsaj kvadratična. Tega nismo mogli pokazati za primer tangentnih in degeneriranih presečišč. V primeru tangentnih presečišč algoritem degenerira v metodo {\em deli in vladaj}, saj območja ne omejijo krivulj dobro. V primeru degeneriranih presečišč je aproksimacija boljša.
+Podobno sliko pokažejo tudi eksperimentalni rezultati. Hitrost konvergence transverzalnih presečišč je najboljša, hitro sledijo degenerirana presečišča in precej slabše se odrežejo tangentna presečišča.
+
+Zaključimo, da je metoda hibridnih izrezkov uporabna tudi v praksi, saj najde vsa presečišča in je hitrejša od metode B\`{e}zierjevih izrezkov. Možnosti za posplošitev metode hibridnih izrezkov vključujejo izračun presečišč dveh racionalnih B\`{e}zierjevih krivulj in izračun preseka dveh B\`{e}zierjevih ploskev.
+
 % seznam uporabljene literature
 \begin{thebibliography}{99}
 
 \bibitem{bez_clip}
- Sederberg T, Nishita T. Curve intersection using B\`{e}zier clipping. Comput
-Aided Des 1990;22(9):538--49.
+ Sederberg T., Nishita T., {\em Curve intersection using B\`{e}zier clipping}, Comput.
+Aided Des., 1990, 538--49.
 
-\bibitem{oznaka-enote-za-sklic}
-\textcolor{Red}{I.~Priimek, {\em Naslov "clanka}, okraj"sano ime revije {\bf letnik revije} (leto izida) strani od--do.}
+\bibitem{hyb_clip}Qi Lou, Ligang Liu, {\em Curve intersection using hybrid clipping}, Computers and
+Graphics, 36 (5), 2012, 309-320.
 
-\bibitem{navodilaOMF}
-\textcolor{Red}{C.~Velkovrh, {\em Nekaj navodil avtorjem za pripravo rokopisa}, Obzornik mat.\ fiz.\ {\bf 21} (1974) 62--64.}
+
+%\bibitem{oznaka-enote-za-sklic}
+%\textcolor{Red}{I.~Priimek, {\em Naslov "clanka}, okraj"sano ime revije {\bf letnik revije} (leto %izida) strani od--do.}
+%
+%\bibitem{navodilaOMF}
+%\textcolor{Red}{C.~Velkovrh, {\em Nekaj navodil avtorjem za pripravo rokopisa}, Obzornik mat.\ fiz.\ {\bf 21} (1974) 62--64.}
 
 \end{thebibliography}
 
